@@ -21,7 +21,7 @@ const App = () => (
         <Toaster />
         <Sonner />
         
-        <BrowserRouter basename="/online_tutors">
+        <BrowserRouter basename="/TUTOR-BRIDGE">
           <Routes>
             <Route path="/" element={<Index />} />
             <Route path="/tutors" element={<Tutors />} />
