@@ -11,6 +11,9 @@ export default defineConfig(({ mode }) => ({
   },
   plugins: [react(), mode === "development" && componentTagger()].filter(Boolean),
   base: "/TUTOR-BRIDGE/",
+  build: {
+    outDir: 'docs',
+  },
   resolve: {
     alias: {
       "@": path.resolve(__dirname, "./src"),
