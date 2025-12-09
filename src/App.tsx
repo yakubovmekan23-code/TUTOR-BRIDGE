@@ -9,25 +9,31 @@ import Subjects from "./pages/Subjects";
 import About from "./pages/About";
 import Contact from "./pages/Contact";
 import NotFound from "./pages/NotFound";
+import { HelmetProvider } from 'react-helmet-async';
 
 const queryClient = new QueryClient();
 
 const App = () => (
   <QueryClientProvider client={queryClient}>
-    <TooltipProvider>
-      <Toaster />
-      <Sonner />
-      <BrowserRouter>
-        <Routes>
-          <Route path="/" element={<Index />} />
-          <Route path="/tutors" element={<Tutors />} />
-          <Route path="/subjects" element={<Subjects />} />
-          <Route path="/about" element={<About />} />
-          <Route path="/contact" element={<Contact />} />
-          <Route path="*" element={<NotFound />} />
-        </Routes>
-      </BrowserRouter>
-    </TooltipProvider>
+    {/* 2. HelmetProvider ile sarmala (QueryClientProvider'ın içi uygundur) */}
+    <HelmetProvider>
+      <TooltipProvider>
+        <Toaster />
+        <Sonner />
+        
+        <BrowserRouter basename="/online_tutors">
+          <Routes>
+            <Route path="/" element={<Index />} />
+            <Route path="/tutors" element={<Tutors />} />
+            <Route path="/subjects" element={<Subjects />} />
+            <Route path="/about" element={<About />} />
+            <Route path="/contact" element={<Contact />} />
+            <Route path="*" element={<NotFound />} />
+          </Routes>
+        </BrowserRouter>
+        
+      </TooltipProvider>
+    </HelmetProvider>
   </QueryClientProvider>
 );
 

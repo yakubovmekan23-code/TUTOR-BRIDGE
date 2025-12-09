@@ -16,6 +16,7 @@ import {
   Dumbbell,
   ArrowRight
 } from "lucide-react";
+import SEO from "@/components/SEO";
 
 const subjects = [
   {
@@ -118,67 +119,73 @@ const subjects = [
 
 export default function Subjects() {
   return (
-    <Layout>
-      {/* Header */}
-      <section className="bg-card border-b border-border">
-        <div className="container py-12 md:py-16">
-          <h1 className="text-3xl md:text-4xl font-bold mb-4">Explore Subjects</h1>
-          <p className="text-lg text-muted-foreground max-w-2xl">
-            Discover our wide range of subjects and find the perfect learning path for your goals.
-          </p>
-        </div>
-      </section>
-
-      {/* Subject Grid */}
-      <section className="py-12 md:py-16">
-        <div className="container">
-          <div className="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-            {subjects.map((subject) => (
-              <Link
-                key={subject.id}
-                to="/tutors"
-                className="group bg-card rounded-2xl border border-border p-6 hover:border-primary/30 hover:shadow-card-hover transition-all duration-300"
-              >
-                <div className={`w-14 h-14 rounded-xl ${subject.color} flex items-center justify-center mb-4 group-hover:scale-110 transition-transform duration-300`}>
-                  <subject.icon className="h-6 w-6" />
-                </div>
-                
-                <h3 className="text-lg font-semibold mb-2 group-hover:text-primary transition-colors">
-                  {subject.name}
-                </h3>
-                
-                <p className="text-sm text-muted-foreground mb-4 line-clamp-2">
-                  {subject.description}
-                </p>
-                
-                <div className="flex items-center justify-between pt-4 border-t border-border">
-                  <span className="text-sm text-muted-foreground">
-                    {subject.tutors} tutors available
-                  </span>
-                  <ArrowRight className="h-4 w-4 text-primary opacity-0 group-hover:opacity-100 transition-opacity" />
-                </div>
-              </Link>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* CTA */}
-      <section className="py-12 md:py-16 bg-card">
-        <div className="container">
-          <div className="text-center max-w-2xl mx-auto">
-            <h2 className="text-2xl md:text-3xl font-bold mb-4">
-              Can't Find Your Subject?
-            </h2>
-            <p className="text-muted-foreground mb-8">
-              We're constantly expanding our tutor network. Let us know what you're looking for and we'll help you find the right match.
+    <>
+      <SEO
+        title="Explore Subjects - Online Tutors"
+        description="Discover our wide range of subjects including Mathematics, Physics, English, Programming, and more. Find the perfect learning path for your goals."
+      />
+      <Layout>
+        {/* Header */}
+        <section className="bg-card border-b border-border">
+          <div className="container py-12 md:py-16">
+            <h1 className="text-3xl md:text-4xl font-bold mb-4">Explore Subjects</h1>
+            <p className="text-lg text-muted-foreground max-w-2xl">
+              Discover our wide range of subjects and find the perfect learning path for your goals.
             </p>
-            <Button variant="accent" size="lg" asChild>
-              <Link to="/contact">Contact Us</Link>
-            </Button>
           </div>
-        </div>
-      </section>
-    </Layout>
+        </section>
+
+        {/* Subject Grid */}
+        <section className="py-12 md:py-16">
+          <div className="container">
+            <div className="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+              {subjects.map((subject) => (
+                <Link
+                  key={subject.id}
+                  to="/tutors"
+                  className="group bg-card rounded-2xl border border-border p-6 hover:border-primary/30 hover:shadow-card-hover transition-all duration-300"
+                >
+                  <div className={`w-14 h-14 rounded-xl ${subject.color} flex items-center justify-center mb-4 group-hover:scale-110 transition-transform duration-300`}>
+                    <subject.icon className="h-6 w-6" />
+                  </div>
+                  
+                  <h3 className="text-lg font-semibold mb-2 group-hover:text-primary transition-colors">
+                    {subject.name}
+                  </h3>
+                  
+                  <p className="text-sm text-muted-foreground mb-4 line-clamp-2">
+                    {subject.description}
+                  </p>
+                  
+                  <div className="flex items-center justify-between pt-4 border-t border-border">
+                    <span className="text-sm text-muted-foreground">
+                      {subject.tutors} tutors available
+                    </span>
+                    <ArrowRight className="h-4 w-4 text-primary opacity-0 group-hover:opacity-100 transition-opacity" />
+                  </div>
+                </Link>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* CTA */}
+        <section className="py-12 md:py-16 bg-card">
+          <div className="container">
+            <div className="text-center max-w-2xl mx-auto">
+              <h2 className="text-2xl md:text-3xl font-bold mb-4">
+                Can't Find Your Subject?
+              </h2>
+              <p className="text-muted-foreground mb-8">
+                We're constantly expanding our tutor network. Let us know what you're looking for and we'll help you find the right match.
+              </p>
+              <Button variant="accent" size="lg" asChild>
+                <Link to="/contact">Contact Us</Link>
+              </Button>
+            </div>
+          </div>
+        </section>
+      </Layout>
+    </>
   );
 }

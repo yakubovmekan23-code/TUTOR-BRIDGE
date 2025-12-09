@@ -4,6 +4,7 @@ import { Input } from "@/components/ui/input";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Star, BookOpen, Clock, Search } from "lucide-react";
 import { useState } from "react";
+import SEO from "@/components/SEO";
 
 const tutors = [
   {
@@ -97,139 +98,145 @@ export default function Tutors() {
   });
 
   return (
-    <Layout>
-      {/* Header */}
-      <section className="bg-card border-b border-border">
-        <div className="container py-12 md:py-16">
-          <h1 className="text-3xl md:text-4xl font-bold mb-4">Find Your Perfect Tutor</h1>
-          <p className="text-lg text-muted-foreground max-w-2xl">
-            Browse our network of verified tutors and find the right match for your learning goals.
-          </p>
-        </div>
-      </section>
-
-      {/* Filters */}
-      <section className="sticky top-16 z-40 bg-background/95 backdrop-blur-sm border-b border-border">
-        <div className="container py-4">
-          <div className="flex flex-col md:flex-row gap-4">
-            <div className="relative flex-1">
-              <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
-              <Input
-                placeholder="Search by name or subject..."
-                className="pl-10"
-                value={searchQuery}
-                onChange={(e) => setSearchQuery(e.target.value)}
-              />
-            </div>
-            <Select value={selectedSubject} onValueChange={setSelectedSubject}>
-              <SelectTrigger className="w-full md:w-48">
-                <SelectValue placeholder="Subject" />
-              </SelectTrigger>
-              <SelectContent>
-                {subjects.map((subject) => (
-                  <SelectItem key={subject} value={subject}>
-                    {subject}
-                  </SelectItem>
-                ))}
-              </SelectContent>
-            </Select>
-            <Select>
-              <SelectTrigger className="w-full md:w-48">
-                <SelectValue placeholder="Experience" />
-              </SelectTrigger>
-              <SelectContent>
-                {experienceLevels.map((level) => (
-                  <SelectItem key={level} value={level}>
-                    {level}
-                  </SelectItem>
-                ))}
-              </SelectContent>
-            </Select>
-            <Select>
-              <SelectTrigger className="w-full md:w-48">
-                <SelectValue placeholder="Price Range" />
-              </SelectTrigger>
-              <SelectContent>
-                {priceRanges.map((range) => (
-                  <SelectItem key={range} value={range}>
-                    {range}
-                  </SelectItem>
-                ))}
-              </SelectContent>
-            </Select>
+    <>
+      <SEO
+        title="Find a Tutor - Online Tutors"
+        description="Browse our network of verified tutors in various subjects. Find the right match for your learning goals and schedule."
+      />
+      <Layout>
+        {/* Header */}
+        <section className="bg-card border-b border-border">
+          <div className="container py-12 md:py-16">
+            <h1 className="text-3xl md:text-4xl font-bold mb-4">Find Your Perfect Tutor</h1>
+            <p className="text-lg text-muted-foreground max-w-2xl">
+              Browse our network of verified tutors and find the right match for your learning goals.
+            </p>
           </div>
-        </div>
-      </section>
+        </section>
 
-      {/* Tutor Grid */}
-      <section className="py-12">
-        <div className="container">
-          <p className="text-sm text-muted-foreground mb-6">
-            Showing {filteredTutors.length} tutors
-          </p>
-          
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {filteredTutors.map((tutor) => (
-              <div
-                key={tutor.id}
-                className="group bg-card rounded-2xl border border-border p-6 hover:border-primary/30 hover:shadow-card-hover transition-all duration-300"
-              >
-                <div className="flex items-start gap-4 mb-4">
-                  <img
-                    src={tutor.photo}
-                    alt={tutor.name}
-                    className="w-16 h-16 rounded-xl object-cover"
-                  />
-                  <div className="flex-1">
-                    <h3 className="font-semibold text-lg group-hover:text-primary transition-colors">
-                      {tutor.name}
-                    </h3>
-                    <div className="flex items-center gap-2 mt-1">
-                      <Star className="h-4 w-4 fill-accent text-accent" />
-                      <span className="text-sm font-medium">{tutor.rating}</span>
-                      <span className="text-sm text-muted-foreground">({tutor.reviews} reviews)</span>
+        {/* Filters */}
+        <section className="sticky top-16 z-40 bg-background/95 backdrop-blur-sm border-b border-border">
+          <div className="container py-4">
+            <div className="flex flex-col md:flex-row gap-4">
+              <div className="relative flex-1">
+                <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
+                <Input
+                  placeholder="Search by name or subject..."
+                  className="pl-10"
+                  value={searchQuery}
+                  onChange={(e) => setSearchQuery(e.target.value)}
+                />
+              </div>
+              <Select value={selectedSubject} onValueChange={setSelectedSubject}>
+                <SelectTrigger className="w-full md:w-48">
+                  <SelectValue placeholder="Subject" />
+                </SelectTrigger>
+                <SelectContent>
+                  {subjects.map((subject) => (
+                    <SelectItem key={subject} value={subject}>
+                      {subject}
+                    </SelectItem>
+                  ))}
+                </SelectContent>
+              </Select>
+              <Select>
+                <SelectTrigger className="w-full md:w-48">
+                  <SelectValue placeholder="Experience" />
+                </SelectTrigger>
+                <SelectContent>
+                  {experienceLevels.map((level) => (
+                    <SelectItem key={level} value={level}>
+                      {level}
+                    </SelectItem>
+                  ))}
+                </SelectContent>
+              </Select>
+              <Select>
+                <SelectTrigger className="w-full md:w-48">
+                  <SelectValue placeholder="Price Range" />
+                </SelectTrigger>
+                <SelectContent>
+                  {priceRanges.map((range) => (
+                    <SelectItem key={range} value={range}>
+                      {range}
+                    </SelectItem>
+                  ))}
+                </SelectContent>
+              </Select>
+            </div>
+          </div>
+        </section>
+
+        {/* Tutor Grid */}
+        <section className="py-12">
+          <div className="container">
+            <p className="text-sm text-muted-foreground mb-6">
+              Showing {filteredTutors.length} tutors
+            </p>
+            
+            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+              {filteredTutors.map((tutor) => (
+                <div
+                  key={tutor.id}
+                  className="group bg-card rounded-2xl border border-border p-6 hover:border-primary/30 hover:shadow-card-hover transition-all duration-300"
+                >
+                  <div className="flex items-start gap-4 mb-4">
+                    <img
+                      src={tutor.photo}
+                      alt={tutor.name}
+                      className="w-16 h-16 rounded-xl object-cover"
+                    />
+                    <div className="flex-1">
+                      <h3 className="font-semibold text-lg group-hover:text-primary transition-colors">
+                        {tutor.name}
+                      </h3>
+                      <div className="flex items-center gap-2 mt-1">
+                        <Star className="h-4 w-4 fill-accent text-accent" />
+                        <span className="text-sm font-medium">{tutor.rating}</span>
+                        <span className="text-sm text-muted-foreground">({tutor.reviews} reviews)</span>
+                      </div>
                     </div>
                   </div>
-                </div>
 
-                <p className="text-sm text-muted-foreground mb-4 line-clamp-2">
-                  {tutor.bio}
-                </p>
+                  <p className="text-sm text-muted-foreground mb-4 line-clamp-2">
+                    {tutor.bio}
+                  </p>
 
-                <div className="flex flex-wrap gap-2 mb-4">
-                  {tutor.subjects.map((subject) => (
-                    <span
-                      key={subject}
-                      className="px-3 py-1 rounded-full text-xs font-medium bg-primary-light text-primary"
-                    >
-                      {subject}
-                    </span>
-                  ))}
-                </div>
-
-                <div className="flex items-center gap-4 text-sm text-muted-foreground mb-6">
-                  <div className="flex items-center gap-1">
-                    <Clock className="h-4 w-4" />
-                    {tutor.experience}
+                  <div className="flex flex-wrap gap-2 mb-4">
+                    {tutor.subjects.map((subject) => (
+                      <span
+                        key={subject}
+                        className="px-3 py-1 rounded-full text-xs font-medium bg-primary-light text-primary"
+                      >
+                        {subject}
+                      </span>
+                    ))}
                   </div>
-                  <div className="flex items-center gap-1">
-                    <BookOpen className="h-4 w-4" />
-                    {tutor.language}
-                  </div>
-                </div>
 
-                <div className="flex items-center justify-between pt-4 border-t border-border">
-                  <div>
-                    <span className="text-2xl font-bold text-primary">${tutor.price}</span>
-                    <span className="text-sm text-muted-foreground">/hour</span>
+                  <div className="flex items-center gap-4 text-sm text-muted-foreground mb-6">
+                    <div className="flex items-center gap-1">
+                      <Clock className="h-4 w-4" />
+                      {tutor.experience}
+                    </div>
+                    <div className="flex items-center gap-1">
+                      <BookOpen className="h-4 w-4" />
+                      {tutor.language}
+                    </div>
                   </div>
-                  <Button variant="accent">Book Lesson</Button>
+
+                  <div className="flex items-center justify-between pt-4 border-t border-border">
+                    <div>
+                      <span className="text-2xl font-bold text-primary">${tutor.price}</span>
+                      <span className="text-sm text-muted-foreground">/hour</span>
+                    </div>
+                    <Button variant="accent">Book Lesson</Button>
+                  </div>
                 </div>
-              </div>
-            ))}
+              ))}
+            </div>
           </div>
-        </div>
-      </section>
-    </Layout>
+        </section>
+      </Layout>
+    </>
   );
 }

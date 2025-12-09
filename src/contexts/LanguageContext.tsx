@@ -1,17 +1,10 @@
-import React, { createContext, useContext, useState, useEffect, useCallback } from "react";
-import { Language, detectLanguage, getTranslation, TranslationKeys } from "@/i18n";
-
-interface LanguageContextType {
-  language: Language;
-  setLanguage: (lang: Language) => void;
-  t: TranslationKeys;
-}
-
-const LanguageContext = createContext<LanguageContextType | undefined>(undefined);
+import React, { useState, useEffect, useCallback } from "react";
+import { Language, detectLanguage, getTranslation } from "@/i18n";
+import { LanguageContext } from "@/hooks/use-language";
 
 export function LanguageProvider({ children }: { children: React.ReactNode }) {
   const [language, setLanguageState] = useState<Language>(() => detectLanguage());
-  const [translations, setTranslations] = useState<TranslationKeys>(() => getTranslation(language));
+  const [translations, setTranslations] = useState(() => getTranslation(language));
 
   const setLanguage = useCallback((lang: Language) => {
     setLanguageState(lang);
@@ -31,12 +24,4 @@ export function LanguageProvider({ children }: { children: React.ReactNode }) {
       {children}
     </LanguageContext.Provider>
   );
-}
-
-export function useLanguage() {
-  const context = useContext(LanguageContext);
-  if (context === undefined) {
-    throw new Error("useLanguage must be used within a LanguageProvider");
-  }
-  return context;
 }
